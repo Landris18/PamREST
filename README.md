@@ -1,2 +1,3 @@
-# PamTest
-Une simple application de restauration
+# PamREST
+
+Une simple application de restauration.
