@@ -4,6 +4,6 @@ from dependencies import get_token_header
 
 router = APIRouter(
     prefix="/headers",
-    tags=["headers"],
+    tags=["Headers"],
     dependencies=[Depends(get_token_header)]
 )

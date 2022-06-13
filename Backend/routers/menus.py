@@ -11,7 +11,7 @@ models.Base.metadata.create_all(bind=engine)
 
 router = APIRouter(
     prefix="/menus",
-    tags=["menus"],
+    tags=["Menus"],
     # dependencies=[Depends(get_token_header)]
 )
 
@@ -24,7 +24,7 @@ def get_db():
         db.close()
 
 
-@router.get("/get_all_menus", response_model=list[schemas.Menu])
+@router.get("/get_all_menus", response_model=list[schemas.Menu], summary="Récupération de tous les menus")
 def get_all_menus(db: Session = Depends(get_db)):
     menus = db.query(models.Menu).all()
     return menus
