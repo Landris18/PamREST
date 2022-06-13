@@ -9,8 +9,8 @@ models.Base.metadata.create_all(bind=engine)
 
 
 router = APIRouter(
-    prefix="/reservations",
-    tags=["reservations"],
+    prefix="/articles",
+    tags=["articles"],
     dependencies=[Depends(get_token_header)]
 )
 

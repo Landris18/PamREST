@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from ..models.models import Categorie, Statut
+from models.models import Categorie, Statut
 import datetime
 
 
@@ -38,6 +38,24 @@ class ReservationBase(BaseModel):
     
     
 class Reservation(ReservationBase):
+    id : int
+    
+    class Config:
+        orm_mode = True
+
+
+
+class ArticleBase(BaseModel):
+    titre = str
+    paragraphe = str
+    image = str
+    publicateur = str
+    date = datetime.date
+    heure = datetime.time
+    nombre_commentaire = int
+    
+    
+class Article(ArticleBase):
     id : int
     
     class Config:
