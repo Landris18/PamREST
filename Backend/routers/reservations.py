@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, status, Response
-# from dependencies import get_token_header
+from dependencies import get_token_header
 from models import models
 from schemas import schemas
 from db.database import get_db, engine
@@ -8,15 +8,18 @@ from sqlalchemy.orm import Session
 
 models.Base.metadata.create_all(bind=engine)
 
-
 router = APIRouter(
     prefix="/reservations",
     tags=["Reservations"],
-    # dependencies=[Depends(get_token_header)]
 )
 
 
-@router.post("/create_reservation", response_model=schemas.Reservation, summary="Création d'une reservation")
+@router.post(
+    "/create_reservation", 
+    response_model=schemas.Reservation, 
+    summary="Création d'une reservation",
+    dependencies=[Depends(get_token_header)]
+)
 def create_reservation(response: Response, reservation: schemas.ReservationCreate, db: Session = Depends(get_db)):
     try:
         reservation_to_create = models.Reservation(
@@ -42,7 +45,12 @@ def create_reservation(response: Response, reservation: schemas.ReservationCreat
         raise HTTPException(status_code=400, detail="Impossible d'effectuer la reservation")
     
     
-@router.put("/edit_statut_reservation/{_id}", response_model=schemas.Reservation, summary="Modification de statut d'une reservation")
+@router.put(
+    "/edit_statut_reservation/{_id}",
+    response_model=schemas.Reservation, 
+    summary="Modification de statut d'une reservation",    
+    dependencies=[Depends(get_token_header)]
+)
 def edit_statut_reservation(response: Response, _id: int, new_statut: str, db: Session = Depends(get_db)):
     try:
         reservation_exist = db.query(models.Reservation).get(_id)
@@ -62,7 +70,11 @@ def edit_statut_reservation(response: Response, _id: int, new_statut: str, db: S
         raise HTTPException(status_code=400, detail="Impossible d'éditer le statut de la reservation")
     
     
-@router.delete("/delete_reservation/{_id}", summary="Suppression d'une reservation")
+@router.delete(
+    "/delete_reservation/{_id}", 
+    summary="Suppression d'une reservation",
+    dependencies=[Depends(get_token_header)]
+)
 def delete_reservation(response: Response, _id: int, db: Session = Depends(get_db)):
     try:
         reservation_exist = db.query(models.Reservation).get(_id)

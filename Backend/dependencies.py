@@ -1,6 +1,11 @@
 from fastapi import Header, HTTPException
+from os import environ as env
+from dotenv import load_dotenv
 
 
-async def get_token_header(x_token: str = Header()):
-    if x_token != "TOKEN_":
-        raise HTTPException(status_code=400, detail="X-Token header invalid")
+load_dotenv()
+
+
+async def get_token_header(jwt_token: str = Header()):
+    if jwt_token != env.get("JWT_TOKEN"):
+        raise HTTPException(status_code=401, detail="JWT Token header invalid")
