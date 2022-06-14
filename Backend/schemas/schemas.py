@@ -5,11 +5,11 @@ import datetime
 
 class MenuBase(BaseModel):
     nom : str
-    categorie = Categorie
-    prix = int
-    description = str
-    image = str
-    is_avant = bool
+    categorie : Categorie
+    prix : int
+    description : str
+    image : str
+    is_avant : bool
     
     
 class Menu(MenuBase):
@@ -46,17 +46,18 @@ class Reservation(ReservationBase):
 
 
 class ArticleBase(BaseModel):
-    titre = str
-    paragraphe = str
-    image = str
-    publicateur = str
-    date = datetime.date
-    heure = datetime.time
-    nombre_commentaire = int
+    titre : str
+    paragraphe : str
+    image : str
+    publicateur : str
+    date : datetime.date
+    heure : datetime.time
+    nombre_commentaire : int
+    is_avant : bool
     
     
 class Article(ArticleBase):
     id : int
     
     class Config:
-        orm_mode = True
+        orm_mode : True

@@ -53,3 +53,4 @@ class Article(Base):
     date = Column(Date)
     heure = Column(Time)
     nombre_commentaire = Column(Integer, index=True)
+    is_avant = Column(Boolean, default=False)

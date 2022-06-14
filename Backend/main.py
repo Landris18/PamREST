@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from routers import menus, reservations
+from routers import menus, reservations, headers, articles
 
 
 tags_metadata = [
@@ -46,6 +46,8 @@ pam_rest.add_middleware(
 
 pam_rest.include_router(menus.router)
 pam_rest.include_router(reservations.router)
+pam_rest.include_router(articles.router)
+pam_rest.include_router(headers.router)
 
 
 @pam_rest.get("/", tags=["Root"], summary="Affichage de message de bienvenu")
@@ -54,4 +56,4 @@ async def root():
 
 
 if __name__ == '__main__':
-    uvicorn.run("main:pam_rest", host='0.0.0.0', port=1600, log_level="info", reload = True)
+    uvicorn.run("main:pam_rest", host='0.0.0.0', port=1600, log_level="info", workers= 10, reload = True)

@@ -1,9 +1,34 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, status, Response
-# from dependencies import get_token_header
 
 
 router = APIRouter(
     prefix="/headers",
     tags=["Headers"],
-    # dependencies=[Depends(get_token_header)]
 )
+
+
+headline_hero = {
+    "titre" : "Healthy eating is important part of lifestyle", 
+    "subtitle" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
+}
+
+image_boxes = [
+    {
+        "image" : "",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
+    },
+    {
+        "image" : "",
+        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
+    }
+]
+
+
+@router.get("/get_headline_hero", summary="Récupération du titre de la page d'accueil")
+def get_headline_hero(response: Response):
+    return headline_hero
+
+
+@router.get("/get_image_boxes", summary="Récupération des cadres d'images")
+def get_image_boxes(response: Response):
+    return image_boxes
