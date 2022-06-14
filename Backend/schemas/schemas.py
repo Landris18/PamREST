@@ -24,7 +24,16 @@ class PaginatedMenu(BaseModel):
     data: list[Menu]
     
 
-
+class ReservationCreate(BaseModel):
+    nom : str
+    prenom : str
+    mail : str
+    telephone : str
+    date : datetime.date
+    heure : datetime.time
+    nombre : int
+    
+    
 class ReservationBase(BaseModel):
     nom : str
     prenom : str

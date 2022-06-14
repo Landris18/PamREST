@@ -22,8 +22,8 @@ class Menu(Base):
     
 
 class Statut(str, enum.Enum):
-    annulee = "reservée"
-    reservee = "annulée"
+    annulee = "annulée"
+    reservee = "reservée"
 
 
 class Reservation(Base):

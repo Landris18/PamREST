@@ -16,8 +16,8 @@ router = APIRouter(
 )
 
 
-@router.post("/create_reservation", response_model=list[schemas.Reservation], summary="Création d'une reservation")
-def create_reservation(response: Response, reservation: schemas.Reservation, db: Session = Depends(get_db)):
+@router.post("/create_reservation", response_model=schemas.Reservation, summary="Création d'une reservation")
+def create_reservation(response: Response, reservation: schemas.ReservationCreate, db: Session = Depends(get_db)):
     try:
         reservation_to_create = models.Reservation(
             nom = reservation.nom, 
@@ -33,14 +33,16 @@ def create_reservation(response: Response, reservation: schemas.Reservation, db:
         db.commit()
         db.refresh(reservation_to_create)
         
-        response.status_code = status.HTTP_200_OK
+        print(reservation_to_create)
+        
+        response.status_code = status.HTTP_201_CREATED
         return reservation_to_create
     
     except Exception:
         raise HTTPException(status_code=400, detail="Impossible d'effectuer la reservation")
     
     
-@router.put("/edit_statut_reservation/{_id}", response_model=list[schemas.Reservation], summary="Modification de statut d'une reservation")
+@router.put("/edit_statut_reservation/{_id}", response_model=schemas.Reservation, summary="Modification de statut d'une reservation")
 def edit_statut_reservation(response: Response, _id: int, new_statut: str, db: Session = Depends(get_db)):
     try:
         reservation_exist = db.query(models.Reservation).get(_id)
@@ -72,10 +74,10 @@ def delete_reservation(response: Response, _id: int, db: Session = Depends(get_d
         db.delete(reservation_exist)
         db.commit()
         
-        response.status_code = status.HTTP_204_NO_CONTENT
+        response.status_code = status.HTTP_200_OK
         return {"message": "Reservation supprimée"}
     
-    except Exception:
+    except Exception as e:
         raise HTTPException(status_code=400, detail="Impossible de supprimer la reservation")
     
         
@@ -83,7 +85,6 @@ def delete_reservation(response: Response, _id: int, db: Session = Depends(get_d
 def get_all_reservations(response: Response, db: Session = Depends(get_db)):
     try:
         reservations = db.query(models.Reservation).all()
-        print(reservations)
         response.status_code = status.HTTP_200_OK
         return reservations
     except Exception:
