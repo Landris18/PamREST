@@ -18,7 +18,6 @@ class Menu(Base):
     categorie = Column(ENUM(Categorie))
     prix = Column(Integer, index=True)
     description = Column(String, index=True)
-    image = Column(String, index=True)
     is_avant = Column(Boolean, default=False)
     
 

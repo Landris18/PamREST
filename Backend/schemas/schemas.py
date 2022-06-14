@@ -8,7 +8,6 @@ class MenuBase(BaseModel):
     categorie : Categorie
     prix : int
     description : str
-    image : str
     is_avant : bool
     
     
@@ -50,6 +49,7 @@ class ArticleBase(BaseModel):
     paragraphe : str
     image : str
     publicateur : str
+    image_publicateur : str
     date : datetime.date
     heure : datetime.time
     nombre_commentaire : int
@@ -60,4 +60,9 @@ class Article(ArticleBase):
     id : int
     
     class Config:
-        orm_mode : True
+        orm_mode = True
+
+class PaginatedArticle(BaseModel):
+    limit: int
+    offset: int
+    data: list[Article]

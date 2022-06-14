@@ -14,20 +14,17 @@ router = APIRouter(
 )
 
 
-# response_model=list[schemas.Article]
-@router.get("/get_articles", summary="Récupération des articles mis en avant")
+@router.get("/get_articles", response_model=schemas.PaginatedArticle, summary="Récupération des articles mis en avant")
 async def get_articles(response: Response, db: Session = Depends(get_db), offset: int = 0, limit: int = 2):
     try:
         articles = db.query(models.Article).filter(models.Article.is_avant == True).offset(offset).limit(limit).all()
         response.status_code = status.HTTP_200_OK
-        return articles
-    except Exception as e:
-        print(e)
+        return {"limit": limit, "offset": offset, "data": articles}
+    except Exception:
         raise HTTPException(status_code=400, detail="Impossible de récupérer les articles mis en avant")
     
     
-# response_model=schemas.Article   
-@router.get("/read_article/{_id}", summary="Lecture d'un article")
+@router.get("/read_article/{_id}", response_model=schemas.Article, summary="Lecture d'un article")
 def read_article(response: Response, _id: int, db: Session = Depends(get_db)):
     try:
         article = db.query(models.Article).get(_id)
