@@ -13,6 +13,11 @@ SQLAlchemy == 1.4.37
 # Backend/routers/headers.py: 1
 # Backend/routers/menus.py: 1
 # Backend/routers/reservations.py: 1
+# Backend/tests/test_articles.py: 4
+# Backend/tests/test_headers.py: 4
+# Backend/tests/test_main.py: 4
+# Backend/tests/test_menus.py: 4
+# Backend/tests/test_reservations.py: 4
 fastapi == 0.78.0
 
 # Backend/env/lib/python3.10/site-packages/mysql/connector/__init__.py: 34
@@ -38,6 +43,7 @@ pyrsistent == 0.18.1
 
 # Backend/db/database.py: 5
 # Backend/dependencies.py: 3
+# Backend/tests/test_reservations.py: 7
 python_dotenv == 0.20.0
 
 # Backend/env/lib/python3.10/site-packages/pkg_resources/tests/data/my-test-package-source/setup.py: 1
