@@ -27,8 +27,18 @@ python3 -m venv env
 
 Activation de l'environnement virtuel:
 
+
 ```s
+# linux
+
 source env/bin/activate
+
+```
+
+```s
+# windows
+
+.\env\Scripts\activate
 
 ```
 
