@@ -4,7 +4,7 @@ Une simple application de restauration.
 
 
 ## Backend
-### Requirements and guides (Environnement Linux, Version Python 3.10 +)
+### Requirements and guides (Environnement Linux et Windows, Version Python 3.10 +)
 
 
 Pour pouvoir lancer cette application, il faut suivre ces instructions et utiliser les versions indiqués:
