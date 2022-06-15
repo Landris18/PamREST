@@ -9,12 +9,6 @@ Une simple application de restauration.
 
 Pour pouvoir lancer cette application, il faut suivre ces instructions et utiliser les versions indiqués:
 
-Installer virtualenv:
-
-```s
-python3 -m pip install virtualenv
-
-```
 
 Création de l'environnement virtuel dans le dossier Backend
 
@@ -76,4 +70,4 @@ http://localhost:1600/docs#/
 
 ## Frontend
 
-Ouvrir le fichier `index.html` dans le navigateur
+Ouvrir le fichier `index.html` dans un navigateur
