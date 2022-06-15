@@ -19,6 +19,8 @@ python3 -m pip install virtualenv
 Création de l'environnement virtuel dans le dossier Backend
 
 ```s
+cd Backend
+
 python3 -m venv env
 
 ```
