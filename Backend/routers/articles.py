@@ -28,6 +28,11 @@ async def get_articles(response: Response, db: Session = Depends(get_db), offset
 def read_article(response: Response, _id: int, db: Session = Depends(get_db)):
     try:
         article = db.query(models.Article).get(_id)
+        
+        if article is None:
+            response.status_code = status.HTTP_404_NOT_FOUND
+            return article
+        
         response.status_code = status.HTTP_200_OK
         return article
     except Exception:

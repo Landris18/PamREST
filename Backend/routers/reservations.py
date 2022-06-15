@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, status, Response
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 from dependencies import get_token_header
 from models import models
 from schemas import schemas
@@ -36,8 +36,6 @@ def create_reservation(response: Response, reservation: schemas.ReservationCreat
         db.commit()
         db.refresh(reservation_to_create)
         
-        print(reservation_to_create)
-        
         response.status_code = status.HTTP_201_CREATED
         return reservation_to_create
     
@@ -46,7 +44,7 @@ def create_reservation(response: Response, reservation: schemas.ReservationCreat
     
     
 @router.put(
-    "/edit_statut_reservation/{_id}",
+    "/edit_statut_reservation/{_id}/",
     response_model=schemas.Reservation, 
     summary="Modification de statut d'une reservation",    
     dependencies=[Depends(get_token_header)]
@@ -57,7 +55,7 @@ def edit_statut_reservation(response: Response, _id: int, new_statut: str, db: S
         
         if reservation_exist is None:
             response.status_code = status.HTTP_404_NOT_FOUND
-            return {"message": "Reservation  non trouvée"}
+            return reservation_exist
 
         reservation_exist.statut = new_statut 
         db.commit()
@@ -81,7 +79,7 @@ def delete_reservation(response: Response, _id: int, db: Session = Depends(get_d
         
         if reservation_exist is None:
             response.status_code = status.HTTP_404_NOT_FOUND
-            return {"message": "Reservation  non trouvée"}
+            return {"message": "Reservation non trouvée"}
 
         db.delete(reservation_exist)
         db.commit()
@@ -89,7 +87,7 @@ def delete_reservation(response: Response, _id: int, db: Session = Depends(get_d
         response.status_code = status.HTTP_200_OK
         return {"message": "Reservation supprimée"}
     
-    except Exception as e:
+    except Exception:
         raise HTTPException(status_code=400, detail="Impossible de supprimer la reservation")
     
         
