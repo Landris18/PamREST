@@ -14,11 +14,11 @@ headline_hero = {
 
 image_boxes = [
     {
-        "image" : "",
+        "image" : "https://technext.github.io/restoran/img/hero.png",
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
     },
     {
-        "image" : "",
+        "image" : "https://technext.github.io/restoran/img/hero.png",
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
     }
 ]

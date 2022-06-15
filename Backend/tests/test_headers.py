@@ -22,11 +22,11 @@ def test_get_image_boxes():
     assert response.status_code == 200
     assert response.json() ==  [
         {
-            "image" : "",
+            "image" : "https://technext.github.io/restoran/img/hero.png",
             "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
         },
         {
-            "image" : "",
+            "image" : "https://technext.github.io/restoran/img/hero.png",
             "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu"
         }
     ]

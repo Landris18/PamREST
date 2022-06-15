@@ -97,5 +97,6 @@ def get_all_reservations(response: Response, db: Session = Depends(get_db)):
         reservations = db.query(models.Reservation).all()
         response.status_code = status.HTTP_200_OK
         return reservations
-    except Exception:
+    except Exception as e:
+        print(e)
         raise HTTPException(status_code=400, detail="Impossible de récupérer la liste des reservations")

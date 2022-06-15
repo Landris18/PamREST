@@ -2,12 +2,9 @@ import sys, os
 sys.path.insert(0, os.path.dirname('/'.join(__file__.split('/')[:-1])))
 
 from fastapi.testclient import TestClient
-from fastapi import Depends
 from main import pam_rest
 from os import environ as env
 from dotenv import load_dotenv
-from models import models
-from sqlalchemy.orm import Session
 
 
 load_dotenv()
