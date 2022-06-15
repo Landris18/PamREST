@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "17382cc8-6830-45ce-8611-81eee1971df5",
+		"name": "PamREST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12976044"
+	},
+	"item": [
+		{
+			"name": "get_menus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/menus/get_menus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"menus",
+						"get_menus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_starters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/menus/get_all_starters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"menus",
+						"get_all_starters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_mains",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/menus/get_all_mains",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"menus",
+						"get_all_mains"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_pastries_and_drinks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/menus/get_all_pastries_and_drinks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"menus",
+						"get_all_pastries_and_drinks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_headline_hero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/headers/get_headline_hero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"headers",
+						"get_headline_hero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_image_boxes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/headers/get_image_boxes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"headers",
+						"get_image_boxes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/articles/get_articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"articles",
+						"get_articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read_article",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/articles/read_article/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"articles",
+						"read_article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_reservation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY1NTIyNDM0MCwiaWF0IjoxNjU1MjI0MzQwfQ.1krwDio17IzYwkujhpY5uH9UbEj5wgIcTLG3L5dyH00",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\t\"nom\" : \"Karen\",\r\n\t\"prenom\" : \"Rashford\",\r\n\t\"mail\" : \"landry.aps@gmail.com\",\r\n\t\"telephone\" : \"0348121147\",\r\n\t\"date\" : \"2020-06-10\",\r\n\t\"heure\" : \"20:10\",\r\n\t\"nombre\" : 8\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1600/reservations/create_reservation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"reservations",
+						"create_reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit_statut_reservation",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY1NTIyNDM0MCwiaWF0IjoxNjU1MjI0MzQwfQ.1krwDio17IzYwkujhpY5uH9UbEj5wgIcTLG3L5dyH00",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:1600/reservations/edit_statut_reservation/1/?new_statut=annulée",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"reservations",
+						"edit_statut_reservation",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "new_statut",
+							"value": "annulée"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_reservation",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "jwt-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY1NTIyNDM0MCwiaWF0IjoxNjU1MjI0MzQwfQ.1krwDio17IzYwkujhpY5uH9UbEj5wgIcTLG3L5dyH00",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:1600/reservations/delete_reservation/37",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"reservations",
+						"delete_reservation",
+						"37"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_reservations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1600/reservations/get_all_reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1600",
+					"path": [
+						"reservations",
+						"get_all_reservations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
