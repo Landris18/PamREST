@@ -52,7 +52,7 @@ pip install -r requirements.txt
 Renommer le fichier `env_template.conf` par `.env` et completer les valeurs vides par les informations sur la base de données et token:
 
 
-## Lancement de l'API REST
+### Lancement de l'API REST
 
 
 ```s
@@ -60,12 +60,18 @@ python3 main.py
 
 ```
 
-## Lancement test unitaire
+### Lancement test unitaire
 
 
 ```s
 pytest -sv
 
+```
+
+### Lien Swagger UI (Documentations)
+
+```s
+http://localhost:1600/docs#/
 ```
 
 ## Frontend
