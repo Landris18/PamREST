@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, status, Response
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 from models import models
 from schemas import schemas
 from db.database import get_db, engine

@@ -1,5 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, BigInteger, Date, Time
-from sqlalchemy.orm import relationship
+from sqlalchemy import Boolean, Column, Integer, String, Date, Time
 from db.database import Base
 import enum
 from sqlalchemy.dialects.mysql import ENUM
