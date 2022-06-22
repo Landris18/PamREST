@@ -9,12 +9,6 @@ Une simple application de restauration.
 
 Pour pouvoir lancer cette application, il faut suivre ces instructions et utiliser les versions indiqués:
 
-Installer virtualenv:
-
-```s
-python3 -m pip install virtualenv
-
-```
 
 Création de l'environnement virtuel dans le dossier Backend
 
@@ -52,7 +46,7 @@ pip install -r requirements.txt
 Renommer le fichier `env_template.conf` par `.env` et completer les valeurs vides par les informations sur la base de données et token:
 
 
-## Lancement de l'API REST
+### Lancement de l'API REST
 
 
 ```s
@@ -60,7 +54,7 @@ python3 main.py
 
 ```
 
-## Lancement test unitaire
+### Lancement test unitaire
 
 
 ```s
@@ -68,6 +62,12 @@ pytest -sv
 
 ```
 
+### Lien Swagger UI (Documentations)
+
+```s
+http://localhost:1600/docs#/
+```
+
 ## Frontend
 
-Ouvrir le fichier `index.html` dans le navigateur
+Ouvrir le fichier `index.html` dans un navigateur
