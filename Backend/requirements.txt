@@ -52,3 +52,6 @@ setuptools == 58.1.0
 
 # Backend/main.py: 1
 uvicorn == 0.17.6
+
+pytest
+requests

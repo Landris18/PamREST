@@ -18,7 +18,6 @@ router = APIRouter(
 async def get_articles(response: Response, db: Session = Depends(get_db), offset: int = 0, limit: int = 2):
     try:
         articles = db.query(models.Article).filter(models.Article.is_avant == True).offset(offset).limit(limit).all()
-        response.status_code = status.HTTP_200_OK
         return {"limit": limit, "offset": offset, "data": articles}
     except Exception:
         raise HTTPException(status_code=400, detail="Impossible de récupérer les articles mis en avant")
@@ -33,7 +32,6 @@ def read_article(response: Response, _id: int, db: Session = Depends(get_db)):
             response.status_code = status.HTTP_404_NOT_FOUND
             return article
         
-        response.status_code = status.HTTP_200_OK
         return article
     except Exception:
         raise HTTPException(status_code=400, detail="Impossible de lire l'article")

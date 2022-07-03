@@ -84,7 +84,6 @@ def delete_reservation(response: Response, _id: int, db: Session = Depends(get_d
         db.delete(reservation_exist)
         db.commit()
         
-        response.status_code = status.HTTP_200_OK
         return {"message": "Reservation supprimée"}
     
     except Exception:
@@ -95,7 +94,6 @@ def delete_reservation(response: Response, _id: int, db: Session = Depends(get_d
 def get_all_reservations(response: Response, db: Session = Depends(get_db)):
     try:
         reservations = db.query(models.Reservation).all()
-        response.status_code = status.HTTP_200_OK
         return reservations
     except Exception:
         raise HTTPException(status_code=400, detail="Impossible de récupérer la liste des reservations")

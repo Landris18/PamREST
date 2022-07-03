@@ -43,7 +43,7 @@ Installation des requirements:
 pip install -r requirements.txt
 ```
 
-Renommer le fichier `env_template.conf` par `.env` et completer les valeurs vides par les informations sur la base de données et token:
+Renommer le fichier `env_template.conf` par `.env` et completer les valeurs vides par les informations sur la base de données et token.
 
 
 ### Lancement de l'API REST
@@ -70,4 +70,4 @@ http://localhost:1600/docs#/
 
 ## Frontend
 
-Ouvrir le fichier `index.html` dans un navigateur
+Ouvrir le fichier `index.html` du dossier `Frontend` dans un navigateur.
