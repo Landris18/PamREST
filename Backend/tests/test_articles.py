@@ -20,7 +20,7 @@ def test_read_article_not_found():
     assert response.json() == None
 
 
-def test_read_article_found():
-    response = client.get("/articles/read_article/1")  
-    assert response.status_code == 200
-    assert response.json() is not None
+# def test_read_article_found():
+#     response = client.get("/articles/read_article/1")  
+#     assert response.status_code == 200
+#     assert response.json() is not None

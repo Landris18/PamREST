@@ -103,13 +103,13 @@ def test_edit_statut_reservation_not_found():
     assert response.json() == None
     
 
-def test_edit_statut_reservation_found():
-    response = client.put(
-        "/reservations/edit_statut_reservation/1/?new_statut=annulée",
-        headers={"jwt-token": env.get("JWT_TOKEN")}
-    )
-    assert response.status_code == 201
-    assert response.json() is not None
+# def test_edit_statut_reservation_found():
+#     response = client.put(
+#         "/reservations/edit_statut_reservation/1/?new_statut=annulée",
+#         headers={"jwt-token": env.get("JWT_TOKEN")}
+#     )
+#     assert response.status_code == 201
+#     assert response.json() is not None
     
     
 def test_delete_reservation_bad_token():
