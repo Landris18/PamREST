@@ -23,12 +23,13 @@ image_boxes = [
     }
 ]
 
+class Headers:
+    
+    @router.get("/get_headline_hero", summary="Récupération du titre de la page d'accueil")
+    def get_headline_hero():
+        return headline_hero
 
-@router.get("/get_headline_hero", summary="Récupération du titre de la page d'accueil")
-def get_headline_hero(response: Response):
-    return headline_hero
 
-
-@router.get("/get_image_boxes", summary="Récupération des cadres d'images")
-def get_image_boxes(response: Response):
-    return image_boxes
+    @router.get("/get_image_boxes", summary="Récupération des cadres d'images")
+    def get_image_boxes():
+        return image_boxes

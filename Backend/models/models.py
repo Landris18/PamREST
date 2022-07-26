@@ -13,10 +13,10 @@ class Menu(Base):
     __tablename__ = "menus"
 
     id = Column(Integer, primary_key=True, index=True)
-    nom = Column(String, unique=True, index=True)
+    nom = Column(String(50), unique=True, index=True)
     categorie = Column(ENUM(Categorie))
     prix = Column(Integer, index=True)
-    description = Column(String)
+    description = Column(String(250))
     is_avant = Column(Boolean, default=False, index=True)
     
 
@@ -29,10 +29,10 @@ class Reservation(Base):
     __tablename__ = "reservations"
 
     id = Column(Integer, primary_key=True, index=True)
-    nom = Column(String)
-    prenom = Column(String)
-    mail = Column(String)
-    telephone = Column(String)
+    nom = Column(String(50))
+    prenom = Column(String(50))
+    mail = Column(String(50))
+    telephone = Column(String(15))
     date = Column(Date, index=True)
     heure = Column(Time)
     nombre = Column(Integer, index=True)
@@ -43,11 +43,11 @@ class Article(Base):
     __tablename__ = "articles"
 
     id = Column(Integer, primary_key=True, index=True)
-    titre = Column(String, index=True)
-    paragraphe = Column(String)
-    image = Column(String)
-    publicateur = Column(String, index=True)
-    image_publicateur = Column(String)
+    titre = Column(String(100), index=True)
+    paragraphe = Column(String(250))
+    image = Column(String(250))
+    publicateur = Column(String(50), index=True)
+    image_publicateur = Column(String(250))
     date = Column(Date, index=True)
     heure = Column(Time)
     nombre_commentaire = Column(Integer, index=True)

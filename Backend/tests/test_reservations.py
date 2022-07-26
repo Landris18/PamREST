@@ -100,16 +100,16 @@ def test_edit_statut_reservation_not_found():
         headers={"jwt-token": env.get("JWT_TOKEN")}
     )
     assert response.status_code == 404
-    assert response.json() == None
+    assert response.json() == {'detail': 'Reservation Not Found'}
     
 
-# def test_edit_statut_reservation_found():
-#     response = client.put(
-#         "/reservations/edit_statut_reservation/1/?new_statut=annulée",
-#         headers={"jwt-token": env.get("JWT_TOKEN")}
-#     )
-#     assert response.status_code == 201
-#     assert response.json() is not None
+def test_edit_statut_reservation_found():
+    response = client.put(
+        "/reservations/edit_statut_reservation/1/?new_statut=annulée",
+        headers={"jwt-token": env.get("JWT_TOKEN")}
+    )
+    assert response.status_code == 201
+    assert response.json() is not None
     
     
 def test_delete_reservation_bad_token():
@@ -127,7 +127,7 @@ def test_delete_reservation_not_found():
         headers={"jwt-token": env.get("JWT_TOKEN")}
     )
     assert response.status_code == 404
-    assert response.json() == {"message": "Reservation non trouvée"}
+    assert response.json() == {'detail': 'Reservation Not Found'}
     
 
 def test_delete_reservation_found():

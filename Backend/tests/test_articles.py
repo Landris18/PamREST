@@ -17,10 +17,10 @@ def test_get_articles():
 def test_read_article_not_found():
     response = client.get("/articles/read_article/404")   
     assert response.status_code == 404
-    assert response.json() == None
+    assert response.json() == {'detail': 'Article Not Found'}
 
 
-# def test_read_article_found():
-#     response = client.get("/articles/read_article/1")  
-#     assert response.status_code == 200
-#     assert response.json() is not None
+def test_read_article_found():
+    response = client.get("/articles/read_article/1")  
+    assert response.status_code == 200
+    assert response.json() is not None

@@ -1,11 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Response
-from models import models
+from fastapi import APIRouter, Depends, HTTPException
+from controllers.exceptions import ArticleException
 from schemas import schemas
-from db.database import get_db, engine
+from db.database import get_db
 from sqlalchemy.orm import Session
-
-
-models.Base.metadata.create_all(bind=engine)
+from controllers.controllers import ArticleController
 
 
 router = APIRouter(
@@ -14,25 +12,24 @@ router = APIRouter(
 )
 
 
-@router.get("/get_articles", response_model=schemas.PaginatedArticle, summary="Récupération des articles mis en avant")
-async def get_articles(response: Response, db: Session = Depends(get_db), offset: int = 0, limit: int = 2):
-    try:
-        articles = db.query(models.Article).filter(models.Article.is_avant == True).offset(offset).limit(limit).all()
-        return {"limit": limit, "offset": offset, "data": articles}
-    except Exception:
-        raise HTTPException(status_code=400, detail="Impossible de récupérer les articles mis en avant")
-    
-    
-@router.get("/read_article/{_id}", response_model=schemas.Article, summary="Lecture d'un article")
-def read_article(response: Response, _id: int, db: Session = Depends(get_db)):
-    try:
-        article = db.query(models.Article).get(_id)
-        
-        if article is None:
-            response.status_code = status.HTTP_404_NOT_FOUND
+class Articles:
+    session : Session = Depends(get_db)
+
+    @router.get("/get_articles", response_model = schemas.PaginatedArticle, summary = "Récupération des articles mis en avant")
+    async def get_articles(limit: int = 2, offset: int = 0, db : Session = Depends(get_db)):
+        try:
+            articles = ArticleController.get_articles(limit, offset, db)
+            response = {"limit": limit, "offset": offset, "data": articles}
+            return response
+        except Exception: 
+            raise HTTPException(status_code=400, detail = "Impossible de récupérer les articles mis en avant")
+            
+            
+    @router.get("/read_article/{_id}", response_model=schemas.Article, summary="Lecture d'un article")
+    def read_article(_id: int, db : Session = Depends(get_db)):
+        try:
+            article = ArticleController.read_article(_id, db)
             return article
-        
-        return article
-    except Exception:
-        raise HTTPException(status_code=400, detail="Impossible de lire l'article")
+        except ArticleException as e:
+            raise HTTPException(**e.__dict__)
     
