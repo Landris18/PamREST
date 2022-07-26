@@ -1,4 +1,4 @@
-Backend/.env
-Backend/env/
+.env
+env/
 __pycache__
 versions/*
