@@ -3,6 +3,7 @@ from db.database import Base
 import enum
 from sqlalchemy.dialects.mysql import ENUM
 
+
 class Categorie(str, enum.Enum):
     starter = "Starter"
     main = "Main"
