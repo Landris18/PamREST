@@ -4,7 +4,7 @@ Une simple application de restauration.
 
 
 ## Backend
-### Requirements and guides (Environnement Linux et Windows, Version Python 3.10 +)
+### Requirements and guides (Environnement Linux ou Windows, Python 3.10 +, MySQL ou MariaDB)
 
 
 Pour pouvoir lancer cette application, il faut suivre ces instructions et utiliser les versions indiqués:
@@ -44,6 +44,7 @@ pip install -r requirements.txt
 ```
 
 Renommer le fichier `env_template.conf` par `.env` et completer les valeurs vides par les informations sur la base de données et token.
+Importer le fichier `db.sql` du dossier `db` dans votre votre base de données MySQL ou MariaDB.
 
 
 ### Lancement de l'API REST
