@@ -54,31 +54,24 @@ class ReservationCreate(BaseModel):
     # Validator
     _validate_heure = validator('heure', allow_reuse=True)(heure_reservation_validator)
     
-    
-class ReservationBase(BaseModel):
-    nom : str = Field(max_length = 50)
-    prenom : str = Field(max_length = 50)
-    mail : EmailStr = Field()
-    telephone : str = Field(max_length = 15)
-    date : FutureDate
-    heure : datetime.time
-    nombre : int = Field(
-        lt = 20, 
-        description = "Number of persons in one reservation must be ineferior to 20"
-    )
-    statut : Statut
-    
-    # Validator
-    _validate_heure = validator('heure', allow_reuse=True)(heure_reservation_validator)
-    
-    
-class Reservation(ReservationBase):
+
+class Reservations(ReservationCreate):
     id : int
+    statut : Statut
+    date : datetime.date
+    
+    class Config:
+        orm_mode = True
+    
+    
+class Reservation(ReservationCreate):
+    id : int
+    statut : Statut
     
     class Config:
         orm_mode = True
 
-
+    
 
 ### Schemas for article ###
 

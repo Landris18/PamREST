@@ -61,7 +61,7 @@ def delete_reservation(_id: int, db: Session = Depends(get_db)):
         raise HTTPException(**e.__dict__)
     
         
-@router.get("/get_all_reservations", response_model=list[schemas.Reservation], summary="Récupération de toutes les réservations")
+@router.get("/get_all_reservations", response_model=list[schemas.Reservations], summary="Récupération de toutes les réservations")
 def get_all_reservations(db: Session = Depends(get_db)):
     try:
         reservations = ReservationController.get_all_reservations(db)

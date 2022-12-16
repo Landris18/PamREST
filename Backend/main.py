@@ -1,6 +1,8 @@
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from routers import menus, reservations, headers, articles
 
 
@@ -32,16 +34,16 @@ pam_rest = FastAPI(
     title="PamREST",
     description="API pour une application de restauration",
     version="0.0.1",
-    openapi_tags=tags_metadata
+    openapi_tags=tags_metadata,
 )
 
 
 pam_rest.add_middleware(
     CORSMiddleware,
-    allow_origins = ["*"],
-    allow_credentials = True,
-    allow_methods = ["*"],
-    allow_headers = ["*"],
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 pam_rest.include_router(menus.router)
@@ -55,5 +57,17 @@ async def root():
     return {"message": "Hello from PamREST !"}
 
 
-if __name__ == '__main__':
-    uvicorn.run("main:pam_rest", host='0.0.0.0', port=1600, log_level="info", workers= 10, reload = True)
+@pam_rest.exception_handler(RequestValidationError)
+async def value_error_exception_handler(request: Request, exc: ValueError):
+    return JSONResponse(status_code=400, content={"message": str(exc)})
+
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:pam_rest",
+        host="0.0.0.0",
+        port=1600,
+        log_level="info",
+        workers=10,
+        reload=True,
+    )

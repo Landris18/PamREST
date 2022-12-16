@@ -5,13 +5,13 @@ from fastapi.testclient import TestClient
 from main import pam_rest
 from os import environ as env
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 
 
 load_dotenv()
 
 
 client = TestClient(pam_rest)
-
 
 id_reservation : int
 
@@ -40,11 +40,14 @@ def test_create_reservation_invalid():
         headers={"jwt-token": env.get("JWT_TOKEN")},
         json={"invalid_key": "data", "invalid_data": "key"},
     )
-    assert response.status_code == 422
+    assert response.status_code == 400
     assert response.json() is not None
     
     
 def test_create_reservation_valid():
+    tomorrow = datetime.now() + timedelta(days=1)
+    tomorrow_date = tomorrow.strftime("%Y-%m-%d")
+    
     response = client.post(
         "/reservations/create_reservation",
         headers={"jwt-token": env.get("JWT_TOKEN")},
@@ -53,7 +56,7 @@ def test_create_reservation_valid():
             "prenom" : "Test",
             "mail" : "landry@gmail.com",
             "telephone" : "0348121147",
-            "date" : "2008-06-10",
+            "date" : tomorrow_date,
             "heure" : "20:10",
             "nombre" : 2
         }
@@ -68,7 +71,7 @@ def test_create_reservation_valid():
         "prenom" : "Test",
         "mail" : "landry@gmail.com",
         "telephone" : "0348121147",
-        "date" : "2008-06-10",
+        "date" : tomorrow_date,
         "heure" : "20:10:00",
         "nombre" : 2,
         "statut" : "reservée",
@@ -90,7 +93,7 @@ def test_edit_statut_reservation_invalid_data():
         "/reservations/edit_statut_reservation/1/",
         headers={"jwt-token": env.get("JWT_TOKEN")},
     )
-    assert response.status_code == 422
+    assert response.status_code == 400
     assert response.json() is not None
     
 
@@ -105,7 +108,7 @@ def test_edit_statut_reservation_not_found():
 
 def test_edit_statut_reservation_found():
     response = client.put(
-        "/reservations/edit_statut_reservation/1/?new_statut=annulée",
+        "/reservations/edit_statut_reservation/"+str(id_reservation)+"/?new_statut=annulée",
         headers={"jwt-token": env.get("JWT_TOKEN")}
     )
     assert response.status_code == 201
